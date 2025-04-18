@@ -6,6 +6,7 @@ const write = @import("../util/write.zig");
 const pretty = @import("../util/pretty.zig");
 
 const justfile = @embedFile("../templates/rust/justfile");
+const exampleTestRs = @embedFile("../templates/rust/tests/example_test.rs");
 
 pub fn init(allocator: std.mem.Allocator, project_name: []const u8) void {
     var argv = [_][]const u8{ "cargo", "version" };
@@ -33,4 +34,9 @@ fn setup(allocator: std.mem.Allocator, project_name: []const u8) !void {
     try write.writeFile("justfile", justfile);
     try write.writeLicense(allocator);
     try write.writeReadme(allocator, project_name);
+
+    print("creating example tests\n", .{});
+    try fs.cwd().makeDir("tests");
+    try std.posix.chdir("tests");
+    try write.writeFile("example_test.rs", exampleTestRs);
 }

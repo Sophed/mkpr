@@ -60,7 +60,9 @@ just build
     ├── README.md <- auto generated with project name
     ├── src
     │   └── main.rs
-    └── target
-        └── ...
+    ├── targe
+    │   └── ...
+    └── tests
+        └── example_test.rs
   ```
 </details>
