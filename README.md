@@ -60,9 +60,26 @@ just build
     ├── README.md <- auto generated with project name
     ├── src
     │   └── main.rs
-    ├── targe
+    ├── target
     │   └── ...
     └── tests
         └── example_test.rs
+  ```
+</details>
+
+### Zig
+- Requires `zig` installed (only version 0.13.0 tested, newer versions should still work)
+<details>
+  <summary>Click to view project structure</summary>
+
+  ```
+    example
+    ├── build.zig
+    ├── build.zig.zon
+    ├── justfile <- build/run scripts
+    ├── LICENSE <- auto generated MIT license from username/current year
+    ├── README.md <- auto generated with project name
+    └── src
+        └── main.zig
   ```
 </details>
