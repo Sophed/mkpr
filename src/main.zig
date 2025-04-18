@@ -1,8 +1,9 @@
 const std = @import("std");
 const print = std.debug.print;
 const eql = std.mem.eql;
-const initGo = @import("inits/go.zig");
 const pretty = @import("util/pretty.zig");
+const initGo = @import("inits/go.zig");
+const initRust = @import("inits/rust.zig");
 
 const Template = enum { go, zig, rust };
 
@@ -27,7 +28,7 @@ pub fn main() u8 {
     const template_name = args[1];
     const project_name = args[2];
 
-    const template = std.meta.stringToEnum(Template, template_name) orelse {
+    const template: Template = std.meta.stringToEnum(Template, template_name) orelse {
         print(pretty.ERR_PREFIX ++ "unknown template\n", .{});
         return 1;
     };
@@ -35,6 +36,9 @@ pub fn main() u8 {
     switch (template) {
         .go => {
             initGo.init(allocator, project_name);
+        },
+        .rust => {
+            initRust.init(allocator, project_name);
         },
         else => {
             print(pretty.ERR_PREFIX ++ "this template is not fully implemented\n", .{});

@@ -1,0 +1,13 @@
+run *ARGS:
+    @echo -e "\e[1;32m󰐊 running project...\033[0m"
+    @cargo run {{ARGS}}
+
+build:
+    @echo -e "\e[1;32m󰣪 building project...\033[0m"
+    @cargo build --release
+    @echo -e "\e[1;32m󰄬 successfully built to ./target/release/\033[0m"
+
+test:
+    @echo -e "\e[1;32m󰂔 testing project...\033[0m"
+    @cargo test
+    @echo -e "\e[1;32m󰄬 tests passed\033[0m"
