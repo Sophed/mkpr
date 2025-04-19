@@ -8,7 +8,6 @@ const pretty = @import("../util/pretty.zig");
 const justfile = @embedFile("../templates/zig/justfile");
 const gitignore = @embedFile("../templates/zig/.gitignore");
 const buildZig = @embedFile("../templates/zig/build.zig");
-const buildZigZon = @embedFile("../templates/zig/build.zig.zon");
 const mainZig = @embedFile("../templates/zig/src/main.zig");
 
 pub fn init(allocator: std.mem.Allocator, project_name: []const u8) void {
@@ -32,20 +31,20 @@ fn setup(allocator: std.mem.Allocator, project_name: []const u8) !void {
     try fs.cwd().makeDir(project_name);
     try std.posix.chdir(project_name);
 
+    print("initializing zig module\n", .{});
+    var argv = [_][]const u8{ "zig", "init" };
+    try cmd.run(allocator, &argv);
+
     print("writing meta files\n", .{});
     try write.writeFile("justfile", justfile);
     try write.writeFile(".gitignore", gitignore);
     const build_script = try pretty.replace(allocator, buildZig, "{{NAME}}", project_name);
     try write.writeFile("build.zig", build_script);
-    const module_details = try pretty.replace(allocator, buildZigZon, "MODULENAME", project_name);
-    try write.writeFile("build.zig.zon", module_details);
     try write.writeLicense(allocator);
     try write.writeReadme(allocator, project_name);
 
-    print("creating src directory\n", .{});
-    try fs.cwd().makeDir("src");
-    try std.posix.chdir("src");
-
     print("writing example code files\n", .{});
+    try std.posix.chdir("src");
     try write.writeFile("main.zig", mainZig);
+    try fs.cwd().deleteFile("root.zig");
 }
