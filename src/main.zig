@@ -41,13 +41,13 @@ pub fn main() u8 {
         .rust => {
             initRust.init(allocator, project_name);
         },
-        .zig => {
-            initZig.init(allocator, project_name);
-        },
-        // else => {
-        //     print(pretty.ERR_PREFIX ++ "this template is not fully implemented\n", .{});
-        //     return 1;
+        // .zig => {
+        //     initZig.init(allocator, project_name);
         // },
+        else => {
+            print(pretty.ERR_PREFIX ++ "this template is not fully implemented\n", .{});
+            return 1;
+        },
     }
     print(pretty.GREEN ++ "󰄬 project created successfully! " ++ pretty.RESET ++ "to get started just" ++ pretty.CYAN ++ " cd " ++ pretty.RESET ++ "in.\n", .{});
     print(pretty.CYAN ++ " " ++ pretty.RESET ++ "use" ++ pretty.CYAN ++ " just run " ++ pretty.RESET ++ "to run your project!\n", .{});

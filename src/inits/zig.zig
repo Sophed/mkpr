@@ -37,7 +37,7 @@ fn setup(allocator: std.mem.Allocator, project_name: []const u8) !void {
     try write.writeFile(".gitignore", gitignore);
     const build_script = try pretty.replace(allocator, buildZig, "{{NAME}}", project_name);
     try write.writeFile("build.zig", build_script);
-    const module_details = try pretty.replace(allocator, buildZigZon, "{{NAME}}", project_name);
+    const module_details = try pretty.replace(allocator, buildZigZon, "MODULENAME", project_name);
     try write.writeFile("build.zig.zon", module_details);
     try write.writeLicense(allocator);
     try write.writeReadme(allocator, project_name);

@@ -17,7 +17,7 @@ Originally based on my project [golaunch](https://github.com/Sophed/golaunch), m
 - Until then, there is binaries available in [releases](https://github.com/Sophed/mkpr/releases)
 
 ## Building
-- Requires `zig` version **0.13.0** and `just` installed
+- Requires `zig` version **0.14.0** and `just` installed
 ```
 git clone https://github.com/Sophed/mkpr
 cd mkpr
@@ -68,7 +68,7 @@ just build
 </details>
 
 ### Zig
-- Requires `zig` installed (only version 0.13.0 tested, newer versions should still work)
+- Requires `zig` installed (only version 0.14.0 tested, newer versions should still work)
 <details>
   <summary>Click to view project structure</summary>
 
