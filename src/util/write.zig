@@ -9,7 +9,7 @@ const pretty = @import("pretty.zig");
 const license = @embedFile("../templates/LICENSE");
 
 pub fn writeLicense(allocator: std.mem.Allocator) !void {
-    const year = try time.currentYear();
+    const year = try time.currentYear(allocator);
     const result = try pretty.replace(allocator, license, "{{YEAR}}", year);
 
     const username = user.getUsername();

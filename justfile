@@ -1,7 +1,7 @@
 run *ARGS:
     @echo -e "\e[1;32m󰐊 running project...\033[0m"
     @zig build -p ./zig-out
-    @./zig-out/bin/* {{ARGS}}
+    @./zig-out/bin/mkpr {{ARGS}}
 
 build:
     @echo -e "\e[1;32m󰣪 building project...\033[0m"
