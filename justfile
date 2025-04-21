@@ -28,3 +28,8 @@ build-all:
     @echo -e "\e[1;32m󰄬 \033[0mbuilt for aarch64-macos"
 
     @echo -e "\e[1;32m󰄬 successfully built to ./zig-out/\033[0m"
+
+test:
+    @echo -e "\e[1;32m󰂔 testing project...\033[0m"
+    @zig build test
+    @echo -e "\e[1;32m󰄬 tests passed\033[0m"

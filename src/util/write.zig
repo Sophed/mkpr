@@ -41,5 +41,5 @@ test "README generation" {
     var gpa = std.heap.GeneralPurposeAllocator(.{}){};
     const allocator = gpa.allocator();
     const contents = try generateReadme(allocator, "example");
-    try testing.expectEqualStrings("#  example\n", contents);
+    try testing.expectEqualStrings("# example\n", contents);
 }

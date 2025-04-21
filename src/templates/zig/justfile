@@ -7,3 +7,8 @@ build:
     @echo -e "\e[1;32m󰣪 building project...\033[0m"
     @zig build -p ./zig-out
     @echo -e "\e[1;32m󰄬 successfully built to ./zig-out/\033[0m"
+
+test:
+    @echo -e "\e[1;32m󰂔 testing project...\033[0m"
+    @zig build test
+    @echo -e "\e[1;32m󰄬 tests passed\033[0m"
