@@ -33,6 +33,7 @@ just build
 
   ```
     example
+    ├── .gitignore <- language specific ignores
     ├─ app
     │  ├─ main.go
     │  └─ main_test.go
@@ -53,6 +54,7 @@ just build
 
   ```
     example
+    ├── .gitignore <- language specific ignores
     ├── Cargo.lock
     ├── Cargo.toml
     ├── justfile <- build/run/test scripts
@@ -74,6 +76,7 @@ just build
 
   ```
     example
+    ├── .gitignore <- language specific ignores
     ├── build.zig
     ├── build.zig.zon
     ├── justfile <- build/run scripts
