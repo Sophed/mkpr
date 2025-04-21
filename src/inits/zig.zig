@@ -31,6 +31,9 @@ fn setup(allocator: std.mem.Allocator, project_name: []const u8) !void {
     try fs.cwd().makeDir(project_name);
     try std.posix.chdir(project_name);
 
+    print("initializing local Git repository\n", .{});
+    try cmd.gitInit(allocator);
+
     print("initializing zig module\n", .{});
     var argv = [_][]const u8{ "zig", "init" };
     try cmd.run(allocator, &argv);
