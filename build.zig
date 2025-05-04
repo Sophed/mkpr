@@ -1,11 +1,23 @@
 const std = @import("std");
 
-pub fn build(b: *std.Build) void {
+pub fn build(b: *std.Build) !void {
     const target = b.standardTargetOptions(.{});
     const optimize = b.standardOptimizeOption(.{ .preferred_optimize_mode = .ReleaseSafe });
 
+    const project_name = "mkpr";
+
+    var gpa = std.heap.GeneralPurposeAllocator(.{}){};
+    const allocator = gpa.allocator();
+    const os = @tagName(target.result.os.tag);
+    const arch = target.result.cpu.arch.genericName();
+    const binary_name = try std.fmt.allocPrint(allocator, "{s}-{s}-{s}", .{
+        project_name,
+        os,
+        arch,
+    });
+
     const exe = b.addExecutable(.{
-        .name = "mkpr",
+        .name = binary_name,
         .root_source_file = b.path("src/main.zig"),
         .target = target,
         .optimize = optimize,
