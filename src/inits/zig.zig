@@ -7,6 +7,7 @@ const pretty = @import("../util/pretty.zig");
 
 const justfile = @embedFile("../templates/zig/justfile");
 const gitignore = @embedFile("../templates/zig/.gitignore");
+const ciYml = @embedFile("../templates/zig/ci.yml");
 const buildZig = @embedFile("../templates/zig/build.zig");
 const mainZig = @embedFile("../templates/zig/src/main.zig");
 
@@ -50,4 +51,9 @@ fn setup(allocator: std.mem.Allocator, project_name: []const u8) !void {
     try std.posix.chdir("src");
     try write.writeFile("main.zig", mainZig);
     try fs.cwd().deleteFile("root.zig");
+
+    print("creating github ci workflows\n", .{});
+    try fs.cwd().makeDir("../.github");
+    try std.posix.chdir("../.github");
+    try write.writeFile("ci.yml", ciYml);
 }
