@@ -16,8 +16,9 @@ jobs:
     name: Check & Build
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/download-artifact@v4
+      - uses: actions/upload-artifact@v4
         with:
+          name: build-artifacts
           path: zig-out
       - uses: extractions/setup-just@v3
       - uses: mlugg/setup-zig@v1.2.1
