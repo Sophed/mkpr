@@ -1,0 +1,26 @@
+name: CI
+
+on:
+  push:
+    paths:
+      - "**.zig"
+      - ".github/workflows/main.yml"
+  pull_request:
+    paths:
+      - "**.zig"
+      - ".github/workflows/main.yml"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Check & Build
+    steps:
+      - uses: actions/checkout@v4
+      - uses: extractions/setup-just@v3
+      - uses: mlugg/setup-zig@v1.2.1
+
+      - name: Code checks
+        run: zig fmt --check --ast-check **.zig
+
+      - name: Build all
+        run: just build-all
