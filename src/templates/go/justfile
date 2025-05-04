@@ -23,10 +23,10 @@ build-all:
     @GOOS=darwin GOARCH=arm64 go build -o ./build/bin-macos-arm64 ./app
     @echo -e "\e[1;32m󰄬 \033[0mbuilt for macos-arm64"
 
-    @GOOS=windows GOARCH=amd64 go build -o ./build/bin-windows-x86 ./app
+    @GOOS=windows GOARCH=amd64 go build -o ./build/bin-windows-x86.exe ./app
     @echo -e "\e[1;32m󰄬 \033[0mbuilt for windows-x86"
 
-    @GOOS=windows GOARCH=arm64 go build -o ./build/bin-windows-arm64 ./app
+    @GOOS=windows GOARCH=arm64 go build -o ./build/bin-windows-arm64.exe ./app
     @echo -e "\e[1;32m󰄬 \033[0mbuilt for windows-arm64"
 
     @echo -e "\e[1;32m󰄬 successfully built binaries to ./build/\033[0m"
