@@ -8,6 +8,29 @@ build:
     @go build -o ./build/bin ./app
     @echo -e "\e[1;32m󰄬 successfully built to ./build/bin\033[0m"
 
+build-all:
+    @echo -e "\e[1;32m󰣪 building project for major platforms...\033[0m"
+
+    @GOOS=linux GOARCH=amd64 go build -o ./build/bin-linux-x86 ./app
+    @echo -e "\e[1;32m󰄬 \033[0mbuilt for linux-x86"
+
+    @GOOS=linux GOARCH=arm64 go build -o ./build/bin-linux-arm64 ./app
+    @echo -e "\e[1;32m󰄬 \033[0mbuilt for linux-arm64"
+
+    @GOOS=darwin GOARCH=amd64 go build -o ./build/bin-macos-x86 ./app
+    @echo -e "\e[1;32m󰄬 \033[0mbuilt for macos-x86"
+
+    @GOOS=darwin GOARCH=arm64 go build -o ./build/bin-macos-arm64 ./app
+    @echo -e "\e[1;32m󰄬 \033[0mbuilt for macos-arm64"
+
+    @GOOS=windows GOARCH=amd64 go build -o ./build/bin-windows-x86 ./app
+    @echo -e "\e[1;32m󰄬 \033[0mbuilt for windows-x86"
+
+    @GOOS=windows GOARCH=arm64 go build -o ./build/bin-windows-arm64 ./app
+    @echo -e "\e[1;32m󰄬 \033[0mbuilt for windows-arm64"
+
+    @echo -e "\e[1;32m󰄬 successfully built binaries to ./build/\033[0m"
+
 test:
     @echo -e "\e[1;32m󰂔 testing project...\033[0m"
     @go test ./...
