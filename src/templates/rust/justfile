@@ -4,15 +4,15 @@ check := GREEN + BOLD + "󰄬 "
 flask := GREEN + BOLD + "󰂔 "
 
 run *ARGS:
-    @echo -e "{{play}}running project...{{normal}}"
+    @echo -e "{{play}}running project...{{NORMAL}}"
     @cargo run {{ARGS}}
 
 build:
-    @echo -e "{{hammer}}building project...{{normal}}"
+    @echo -e "{{hammer}}building project...{{NORMAL}}"
     @cargo build --release
-    @echo -e "{{check}}successfully built to ./target/release/{{normal}}"
+    @echo -e "{{check}}successfully built to ./target/release/{{NORMAL}}"
 
 test:
-    @echo -e "{{flask}}testing project...{{normal}}"
+    @echo -e "{{flask}}testing project...{{NORMAL}}"
     @cargo test
-    @echo -e "{{check}}tests passed{{normal}}"
+    @echo -e "{{check}}tests passed{{NORMAL}}"
