@@ -40,3 +40,6 @@ test:
     @echo -e "{{flask}}testing project...{{NORMAL}}"
     @go test ./...
     @echo -e "{{check}}tests passed{{NORMAL}}"
+    @echo -e "{{flask}}running linter...{{NORMAL}}"
+    @golangci-lint run
+    @echo -e "{{check}}linting passed{{NORMAL}}"

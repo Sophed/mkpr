@@ -54,6 +54,7 @@ fn setup(allocator: std.mem.Allocator, project_name: []const u8) !void {
     try write.writeFile("main_test.go", mainTestGo);
 
     print("creating github ci workflows\n", .{});
+    try fs.cwd().makeDir("../.github");
     try fs.cwd().makeDir("../.github/workflows");
     try std.posix.chdir("../.github/workflows");
     try write.writeFile("ci.yml", ciYml);
