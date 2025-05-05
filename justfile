@@ -1,30 +1,35 @@
+play := GREEN + BOLD + "󰐊 "
+hammer := GREEN + BOLD + "󰣪 "
+check := GREEN + BOLD + "󰄬 "
+flask := GREEN + BOLD + "󰂔 "
+
 run *ARGS:
-    @echo -e "\e[1;32m󰐊 running project...\033[0m"
+    @echo -e "{{play}}running project...{{NORMAL}}"
     @zig build run -- {{ARGS}}
 
 build:
-    @echo -e "\e[1;32m󰣪 building project...\033[0m"
+    @echo -e "{{hammer}}building project...{{NORMAL}}"
     @zig build
-    @echo -e "\e[1;32m󰄬 successfully built to ./zig-out/\033[0m"
+    @echo -e "{{check}}successfully built to ./zig-out/{{NORMAL}}"
 
 build-all:
-    @echo -e "\e[1;32m󰣪 building project for major platforms...\033[0m"
+    @echo -e "{{hammer}}building project for major platforms...{{NORMAL}}"
 
     @zig build -Dtarget="x86_64-linux"
-    @echo -e "\e[1;32m󰄬 \033[0mbuilt for linux-x86"
+    @echo -e "{{check + NORMAL}}built for linux-x86"
 
     @zig build -Dtarget="aarch64-linux"
-    @echo -e "\e[1;32m󰄬 \033[0mbuilt for linux-aarch64"
+    @echo -e "{{check + NORMAL}}built for linux-aarch64"
 
     @zig build -Dtarget="x86_64-macos"
-    @echo -e "\e[1;32m󰄬 \033[0mbuilt for macos-x86_64"
+    @echo -e "{{check + NORMAL}}built for macos-x86_64"
 
     @zig build -Dtarget="aarch64-macos"
-    @echo -e "\e[1;32m󰄬 \033[0mbuilt for macos-aarch64"
+    @echo -e "{{check + NORMAL}}built for macos-aarch64"
 
-    @echo -e "\e[1;32m󰄬 successfully built binaries to ./zig-out/bin/\033[0m"
+    @echo -e "{{check}}successfully built binaries to ./zig-out/bin/{{NORMAL}}"
 
 test:
-    @echo -e "\e[1;32m󰂔 testing project...\033[0m"
+    @echo -e "{{flask}}testing project...{{NORMAL}}"
     @zig build test
-    @echo -e "\e[1;32m󰄬 tests passed\033[0m"
+    @echo -e "{{check}}tests passed{{NORMAL}}"

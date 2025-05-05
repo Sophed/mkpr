@@ -1,13 +1,18 @@
+play := GREEN + BOLD + "󰐊 "
+hammer := GREEN + BOLD + "󰣪 "
+check := GREEN + BOLD + "󰄬 "
+flask := GREEN + BOLD + "󰂔 "
+
 run *ARGS:
-    @echo -e "\e[1;32m󰐊 running project...\033[0m"
+    @echo -e "{{play}}running project...{{normal}}"
     @cargo run {{ARGS}}
 
 build:
-    @echo -e "\e[1;32m󰣪 building project...\033[0m"
+    @echo -e "{{hammer}}building project...{{normal}}"
     @cargo build --release
-    @echo -e "\e[1;32m󰄬 successfully built to ./target/release/\033[0m"
+    @echo -e "{{check}}successfully built to ./target/release/{{normal}}"
 
 test:
-    @echo -e "\e[1;32m󰂔 testing project...\033[0m"
+    @echo -e "{{flask}}testing project...{{normal}}"
     @cargo test
-    @echo -e "\e[1;32m󰄬 tests passed\033[0m"
+    @echo -e "{{check}}tests passed{{normal}}"

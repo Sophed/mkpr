@@ -1,37 +1,42 @@
+play := GREEN + BOLD + "󰐊 "
+hammer := GREEN + BOLD + "󰣪 "
+check := GREEN + BOLD + "󰄬 "
+flask := GREEN + BOLD + "󰂔 "
+
 run *ARGS:
-    @echo -e "\e[1;32m󰐊 running project...\033[0m"
+    @echo -e "{{play}}running project...{{NORMAL}}"
     @go run ./app {{ARGS}}
 
 build:
-    @echo -e "\e[1;32m󰣪 building project...\033[0m"
+    @echo -e "{{hammer}}building project...{{NORMAL}}"
     @rm -rf ./build
     @go build -o ./build/bin ./app
-    @echo -e "\e[1;32m󰄬 successfully built to ./build/bin\033[0m"
+    @echo -e "{{check}}successfully built to ./build/bin{{NORMAL}}"
 
 build-all:
-    @echo -e "\e[1;32m󰣪 building project for major platforms...\033[0m"
+    @echo -e "{{hammer}}building project for major platforms...{{NORMAL}}"
 
     @GOOS=linux GOARCH=amd64 go build -o ./build/bin-linux-x86 ./app
-    @echo -e "\e[1;32m󰄬 \033[0mbuilt for linux-x86"
+    @echo -e "{{check + NORMAL}}built for linux-x86"
 
     @GOOS=linux GOARCH=arm64 go build -o ./build/bin-linux-arm64 ./app
-    @echo -e "\e[1;32m󰄬 \033[0mbuilt for linux-arm64"
+    @echo -e "{{check + NORMAL}}built for linux-arm64"
 
     @GOOS=darwin GOARCH=amd64 go build -o ./build/bin-macos-x86 ./app
-    @echo -e "\e[1;32m󰄬 \033[0mbuilt for macos-x86"
+    @echo -e "{{check + NORMAL}}built for macos-x86"
 
     @GOOS=darwin GOARCH=arm64 go build -o ./build/bin-macos-arm64 ./app
-    @echo -e "\e[1;32m󰄬 \033[0mbuilt for macos-arm64"
+    @echo -e "{{check + NORMAL}}built for macos-arm64"
 
     @GOOS=windows GOARCH=amd64 go build -o ./build/bin-windows-x86.exe ./app
-    @echo -e "\e[1;32m󰄬 \033[0mbuilt for windows-x86"
+    @echo -e "{{check + NORMAL}}built for windows-x86"
 
     @GOOS=windows GOARCH=arm64 go build -o ./build/bin-windows-arm64.exe ./app
-    @echo -e "\e[1;32m󰄬 \033[0mbuilt for windows-arm64"
+    @echo -e "{{check + NORMAL}}built for windows-arm64"
 
-    @echo -e "\e[1;32m󰄬 successfully built binaries to ./build/\033[0m"
+    @echo -e "{{check}}successfully built binaries to ./build/{{NORMAL}}"
 
 test:
-    @echo -e "\e[1;32m󰂔 testing project...\033[0m"
+    @echo -e "{{flask}}testing project...{{NORMAL}}"
     @go test ./...
-    @echo -e "\e[1;32m󰄬 tests passed\033[0m"
+    @echo -e "{{check}}tests passed{{NORMAL}}"
