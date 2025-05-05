@@ -7,6 +7,7 @@ const pretty = @import("../util/pretty.zig");
 
 const justfile = @embedFile("../templates/go/justfile");
 const gitignore = @embedFile("../templates/go/.gitignore");
+const ciYml = @embedFile("../templates/go/ci.yml");
 const mainGo = @embedFile("../templates/go/app/main.go");
 const mainTestGo = @embedFile("../templates/go/app/main_test.go");
 
@@ -51,4 +52,9 @@ fn setup(allocator: std.mem.Allocator, project_name: []const u8) !void {
     print("writing example code files\n", .{});
     try write.writeFile("main.go", mainGo);
     try write.writeFile("main_test.go", mainTestGo);
+
+    print("creating github ci workflows\n", .{});
+    try fs.cwd().makeDir("../.github/workflows");
+    try std.posix.chdir("../.github/workflows");
+    try write.writeFile("ci.yml", ciYml);
 }

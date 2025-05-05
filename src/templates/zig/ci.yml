@@ -22,11 +22,11 @@ jobs:
       - name: Code checks
         run: zig fmt --check --ast-check **.zig
 
-      - name: Run tests
-        run: just test
-
       - name: Build all
         run: just build-all
+
+      - name: Run tests
+        run: just test
 
       - name: Generate artifacts
         uses: actions/upload-artifact@v4

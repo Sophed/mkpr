@@ -1,14 +1,6 @@
 name: CI
 
-on:
-  push:
-    paths:
-      - "**.zig"
-      - ".github/workflows/ci.yml"
-  pull_request:
-    paths:
-      - "**.zig"
-      - ".github/workflows/ci.yml"
+on: [push, pull_request]
 
 jobs:
   build:
@@ -16,20 +8,24 @@ jobs:
     name: Test & Build
     steps:
       - uses: actions/checkout@v4
-      - uses: mlugg/setup-zig@v1.2.1
       - uses: extractions/setup-just@v3
 
-      - name: Code checks
-        run: zig fmt --check --ast-check **.zig
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: stable
 
-      - name: Build all
+      - name: Build for all major platforms
         run: just build-all
 
       - name: Run tests
         run: just test
 
+      - name: Run linter
+        uses: golangci/golangci-lint-action@v8.0.0
+
       - name: Generate artifacts
         uses: actions/upload-artifact@v4
         with:
           name: build-artifacts
-          path: zig-out/bin
+          path: build
